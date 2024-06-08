@@ -30,6 +30,7 @@ class ProductWithIdView(View):
 class ProductReviewView(View):
     def post(self, request, productId):
         review_data= json.loads(request.body)
+        review_data["productId"] = productId
         review_data["review_id"] = len(book_review_data_Store)+1
 
 

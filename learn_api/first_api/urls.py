@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import ProductView, ProductWithIdView, productReviewSerializer
-
+from .views import ProductView, ProductWithIdView, ProductReviewView
+from django.views.decorators.csrf import csrf_exempt
 
 
 # urlpatterns = [
@@ -12,5 +12,5 @@ from .views import ProductView, ProductWithIdView, productReviewSerializer
 urlpatterns = [
     path('products/', ProductView.as_view(), name='product-list'),
     path('products/<int:customerId>/', ProductWithIdView.as_view(), name='product-detail'),
-      path('products/<int:productId>/review', productReviewSerializer.as_view(), name='product-detail'),
+    path('products/<int:productId>/review', csrf_exempt(ProductReviewView.as_view()), name='product-review'),
 ]
